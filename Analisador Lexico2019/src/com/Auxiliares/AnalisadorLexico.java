@@ -38,7 +38,8 @@ public class AnalisadorLexico {
 		
 	    continue;
 		
-	  } else if ( caractere == -1 && tipoAtual == Token.EOF ) {
+	  } 
+	  else if ( caractere == -1 && tipoAtual == Token.EOF ) {
 					
 	    return Token.EOF(); 
 		
@@ -271,7 +272,8 @@ public class AnalisadorLexico {
 						
 			estado = 0;
 			
-		  } else if( caractere == '*' ) {
+		  }
+		  else if( caractere == '*' ) {
 			  
 			caractere = pegardoBuffer();
 			 
@@ -293,7 +295,8 @@ public class AnalisadorLexico {
 	  	
 		    }
 		    
-		  } else {
+		  } 
+		  else {
 			  
             tipoAtual = Token.OP;
             valorAtual = new Integer( Token.DIV );
@@ -303,7 +306,8 @@ public class AnalisadorLexico {
 			
 		  }
 	
-		}break;
+		}
+		break;
 
 		case 28: {
 			
@@ -314,14 +318,16 @@ public class AnalisadorLexico {
 		    
 		    feito = true;
 		    
-		  } else {
+		  } 
+		  else {
 			  
 		    retoneparaBuffer( caractere );
 		    estado = getProximoEstado();
 		    
 		  }
 		  
-		}break;
+		}
+		break;
 		
 		case 29: {
 			
@@ -330,7 +336,8 @@ public class AnalisadorLexico {
 		    valorAtual = sBuffer;
 		    feito = true;
 		    
-		  } else {
+		  } 
+		  else {
 			  
 		    estado = 29;
 		    
@@ -338,7 +345,8 @@ public class AnalisadorLexico {
 		    
 		  }
 		  
-		}break;
+		}
+		break;
 		
 		case 32: {
 			
@@ -349,14 +357,16 @@ public class AnalisadorLexico {
 			
 		    feito = true;
 
-		  } else {
+		  } 
+		  else {
 			
 		    retoneparaBuffer( caractere );
 		    estado = getProximoEstado();
 		 
 		  }
 	
-		}break;
+		}
+		break;
 		
 		case 35: {
 	    	
@@ -369,14 +379,16 @@ public class AnalisadorLexico {
 			sBuffer = new StringBuffer();
 			sBuffer.append( (char) caractere );
 			
-		  } else {
+		  } 
+		  else {
 						
 		    retoneparaBuffer( caractere );
 			estado = getProximoEstado();
 			
 		  }
 
-		}break;
+		}
+		break;
 				
 		case 36: {
 			
@@ -386,7 +398,8 @@ public class AnalisadorLexico {
 			
 			sBuffer.append( (char) caractere );
 			
-		  } else {
+		  } 
+		  else {
 						
 			retoneparaBuffer( caractere );					
 			
@@ -395,7 +408,8 @@ public class AnalisadorLexico {
 			  tipoAtual = PalavrasChave.tipoPalavraChave( sBuffer );
 			  valorAtual = null;
 			
-			} else {
+			} 
+			else {
 							
 			  valorAtual = sBuffer.toString();
 			  
@@ -405,7 +419,8 @@ public class AnalisadorLexico {
 			
 		  }
 
-		}break;
+		}
+		break;
 		
 		case 38: {
 			
@@ -418,7 +433,8 @@ public class AnalisadorLexico {
 			sBuffer = new StringBuffer();
 			sBuffer.append( (char) caractere );
 			
-		  } else {
+		  } 
+		  else {
 						
 			retoneparaBuffer( caractere );
 			estado = getProximoEstado();
@@ -434,7 +450,8 @@ public class AnalisadorLexico {
 		    estado = 39;
 			sBuffer.append( ( char) caractere );
 			
-		  } else {
+		  } 
+		  else {
 
 		    retoneparaBuffer( caractere );  
 			
@@ -455,7 +472,8 @@ public class AnalisadorLexico {
 		    
 		    sBuffer = new StringBuffer();
 		    	
-		  } else {
+		  } 
+		  else {
 			  
 		    retoneparaBuffer( caractere );
 		    estado = getProximoEstado();
@@ -472,13 +490,15 @@ public class AnalisadorLexico {
 		    
 		    sBuffer.append( (char) caractere );
 		    
-		  } else if ( caractere == '\\') {
+		  } 
+		  else if ( caractere == '\\') {
 				
 		    estado = 43;
 			
 		    sBuffer.append( (char) caractere );
   
-		  } else {
+		  } 
+		  else {
 		
 			retoneparaBuffer( caractere );
 			 estado = getProximoEstado();
@@ -494,7 +514,8 @@ public class AnalisadorLexico {
 		    
 		    sBuffer.append( (char) caractere );
 		    
-		  } else {
+		  } 
+		  else {
 			  
 		    retoneparaBuffer( caractere );
 		    estado = getProximoEstado();
@@ -511,7 +532,8 @@ public class AnalisadorLexico {
 		  
 		    feito = true;
 		    
-		  } else {
+		  } 
+		  else {
 			  
 		    retoneparaBuffer( caractere ); 
 		    estado = getProximoEstado();
@@ -530,7 +552,8 @@ public class AnalisadorLexico {
 			
 			sBuffer = new StringBuffer();
 			
-	      } else {
+	      } 
+	      else {
 					  
 			retoneparaBuffer( caractere );
 			
@@ -548,13 +571,15 @@ public class AnalisadorLexico {
 			
 			sBuffer.append( (char) caractere );
 			
-		  } else if( caractere == '\\' ){
+		  } 
+		  else if( caractere == '\\' ){
 
 			estado = 48;
 			
 			sBuffer.append( (char) caractere );
 		    
-		  } else {
+		  } 
+		  else {
 				
 		    retoneparaBuffer( caractere );
 		    estado = 49;
@@ -571,7 +596,8 @@ public class AnalisadorLexico {
 		    
 		    sBuffer.append( (char) caractere );
 		    
-		  } else {
+		  } 
+		  else {
 			  
 		    estado = getProximoEstado();
 		    
@@ -586,7 +612,8 @@ public class AnalisadorLexico {
 		    valorAtual = sBuffer;
 		    feito = true;
 		    
-		  } else {
+		  } 
+		  else {
 			
 			retoneparaBuffer( caractere );
 		    estado = getProximoEstado();
@@ -663,5 +690,7 @@ public class AnalisadorLexico {
 	return resultado;
 	
   }
+  
+  
 
 }

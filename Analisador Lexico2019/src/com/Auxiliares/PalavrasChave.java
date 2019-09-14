@@ -42,47 +42,58 @@ public class PalavrasChave {
     	
       resultado = Token.CHAR;
       
-    } else if (palavra1.equals(ELSE)) {
+    } 
+    else if (palavra1.equals(ELSE)) {
 
       resultado = Token.ELSE;
 
-    } else if (palavra1.equals(FALSE)) {
+    } 
+    else if (palavra1.equals(FALSE)) {
   
       resultado = Token.FALSE;
 
-    } else if (palavra1.equals(INT)) {
+    } 
+    else if (palavra1.equals(INT)) {
   
       resultado = Token.INT;
 	
-    } else if (palavra1.equals(IF)) {
+    } 
+    else if (palavra1.equals(IF)) {
   
       resultado = Token.IF;
   	
-    } else if (palavra1.equals(MAIN)) {
+    } 
+    else if (palavra1.equals(MAIN)) {
     
       resultado = Token.MAIN;
     	
-    } else if (palavra1.equals(OUT)) {
+    } 
+    else if (palavra1.equals(OUT)) {
        
       resultado = Token.OUT;
     	
-    } else if (palavra1.equals(PRINTF)) {
+    } 
+    else if (palavra1.equals(PRINTF)) {
         
       resultado = Token.PRINTF;
     	
-    } else if (palavra1.equals(RETURN)) {
+    } 
+    else if (palavra1.equals(RETURN)) {
        
       resultado = Token.RETURN;
     	
-    } else if (palavra1.equals(STATIC)) {
+    } 
+    else if (palavra1.equals(STATIC)) {
         
       resultado = Token.STATIC;
     	
-    } else if (palavra1.equals(VOID)) {
+    } 
+    else if (palavra1.equals(VOID)) {
         
       resultado = Token.VOID;
     	
-    } else {
+    } 
+    else {
         
       resultado = Token.WHILE;
     	
