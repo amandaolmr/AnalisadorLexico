@@ -1,4 +1,3 @@
-
 package com.Principal;
 
 import java.io.BufferedReader;
@@ -22,23 +21,23 @@ public class TestaAnalisadorLexico {
     	
     	
     	
-      bufferedReader = new BufferedReader( new InputStreamReader( new FileInputStream( "Programa.lex" ) ) );
-	  analisadorLexico = new AnalisadorLexico( bufferedReader );
-	  token = analisadorLexico.pegarProximoToken();
-	  
-	  while ( token.getTipo() != Token.EOF ) {
-				
-	    System.out.println( "Token: " + token );
-		
+      bufferedReader = new BufferedReader( new InputStreamReader( new FileInputStream("/home/argonaut/Programming/VsCode/AnalisadorLexico/Analisador Lexico2019/Programa.lex") ) );
+	    analisadorLexico = new AnalisadorLexico( bufferedReader );
 	    token = analisadorLexico.pegarProximoToken();
-		
-	  }
+	  
+      while ( token.getTipo() != Token.EOF ) {
+          
+        System.out.println( "Token: " + token );
+      
+        token = analisadorLexico.pegarProximoToken();
+      
+      }
 		
     }
 	
     catch (Exception e) {
 		
-      System.err.println( "Exceção: " + e.getMessage() );
+      System.err.println( "ExceÃ§Ã£o: " + e.getMessage() );
     	
     }
 	

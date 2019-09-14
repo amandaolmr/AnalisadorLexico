@@ -1,4 +1,3 @@
-
 package com.Auxiliares;
 
 import java.io.BufferedReader;
@@ -33,7 +32,8 @@ public class AnalisadorLexico {
 	while ( !feito ) {
 		
 	  int caractere = pegardoBuffer();
-	  
+	  System.out.println(Character.toChars(caractere));
+
 	  if ( Character.isWhitespace(caractere) && tipoAtual == Token.EOF ) {
 		
 	    continue;
@@ -378,7 +378,7 @@ public class AnalisadorLexico {
 		    
 			sBuffer = new StringBuffer();
 			sBuffer.append( (char) caractere );
-			
+			System.out.println(sBuffer);
 		  } 
 		  else {
 						
@@ -683,7 +683,7 @@ public class AnalisadorLexico {
  
 	  case 41: resultado = 46; break;
 	  
-	  default: throw new LexerException( "Erro Lexico: Impossível reconhecer token " );
+	  default: throw new LexerException( "Erro Lexico: Impossï¿½vel reconhecer token " );
 		
 	}
 	
