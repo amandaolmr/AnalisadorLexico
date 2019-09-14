@@ -19,6 +19,9 @@ public class TestaAnalisadorLexico {
     System.out.println( "Analise Lexica: \n" );
 	
     try {
+    	
+    	
+    	
       bufferedReader = new BufferedReader( new InputStreamReader( new FileInputStream( "Programa.lex" ) ) );
 	  analisadorLexico = new AnalisadorLexico( bufferedReader );
 	  token = analisadorLexico.pegarProximoToken();
