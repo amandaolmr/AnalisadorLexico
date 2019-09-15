@@ -27,6 +27,7 @@ public class AnalisadorLexico {
 	Object valorAtual = null;
 	StringBuffer sBuffer = null;
 	StringBuilder ssBuffer = null;
+	Integer bufferTemporario = null;
 	
 	estado = 0;
 	
@@ -184,12 +185,38 @@ public class AnalisadorLexico {
 			}break;
 
 			case '#': {
-
-				estado = 50;
+				
 				ssBuffer = new StringBuilder();
+				
+				bufferTemporario = new Integer(pegardoBuffer());
+				retoneparaBuffer(bufferTemporario.intValue());
+				bufferValid = false;
+
 				tipoAtual = Token.POSPROCESS;
-				valorAtual = new Integer( Token.PPS );
-				retoneparaBuffer( caractere );
+
+				if ( caractere == '#' && Simbolos.isLetra(bufferTemporario.intValue()) ){
+										
+					estado = 50;
+					retoneparaBuffer( caractere );
+					
+				}
+
+				else if ( caractere == '#' && !Simbolos.isLetra(bufferTemporario.intValue()) ){
+					
+					estado = 999;
+					estado = getProximoEstado();
+
+					//retoneparaBuffer( caractere );
+					
+				}
+
+				else {
+					
+					estado = 50;
+					
+					retoneparaBuffer( bufferTemporario.intValue() );	
+
+				}				
 
 			}break;
 
@@ -633,15 +660,17 @@ public class AnalisadorLexico {
 		}break;
 		
 		case 50:{
+			
 			if (!Simbolos.isLetra(caractere) && !Character.isWhitespace(caractere)) {
 				ssBuffer.append("#");
-			} else if ((!Simbolos.isLetra(caractere)) && Character.isSpaceChar(pegardoBuffer())) {
+				retoneparaBuffer(bufferTemporario.intValue());
+			} else if ((!Simbolos.isLetra(caractere)) && Character.isSpaceChar(bufferTemporario.intValue())) {
 				estado = 0;	
 			} else if(!Simbolos.isLetra(caractere) && (Character.isWhitespace(caractere))
 				&& (caractere != -1)){
 					estado = 0;
 			}else{
-				retoneparaBuffer( caractere );
+				retoneparaBuffer( bufferTemporario.intValue() );
 				estado = 51;
 			}			
 		}break;
@@ -681,11 +710,25 @@ public class AnalisadorLexico {
 			  retoneparaBuffer( caractere );					
 			  
 			  if ( PalavrasChave.isPalavraChave( new StringBuffer(ssBuffer)) ) {
-								  
+				
 				tipoAtual = PalavrasChave.tipoPalavraChave( new StringBuffer(ssBuffer) );
 				valorAtual = null;
+				
+				while( caractere != '\n' && caractere != -1 ) {
+				 
+					caractere = pegardoBuffer();
+	  
+				  }
+				  
+			  }
 			  
+			  else if ( !(PalavrasChave.isPalavraChave( new StringBuffer(ssBuffer))) ){
+				
+				estado = getProximoEstado();
+				tipoAtual = Token.POSPROCESS;
+
 			  } 
+			  
 			  else {
 							  
 				valorAtual = ssBuffer.toString();
