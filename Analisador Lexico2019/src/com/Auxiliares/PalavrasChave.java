@@ -15,14 +15,14 @@ public class PalavrasChave {
   private static final String STATIC = "static";
   private static final String VOID   = "void";
   private static final String WHILE = "while";
-    
+  private static final String INCLUDE = "#include";  
   public static boolean isPalavraChave(StringBuffer palavra) {
 
     String palavra1 = palavra.toString();
 	
     if ( palavra1.equals(CHAR) || palavra1.equals(ELSE) || palavra1.equals(FALSE) || palavra1.equals(INT) || palavra1.equals(IF)
       || palavra1.equals(MAIN) || palavra1.equals(OUT) || palavra1.equals(PRINTF) || palavra1.equals(RETURN)
-      || palavra1.equals(STATIC) || palavra1.equals(VOID) || palavra1.equals(WHILE) ) {
+      || palavra1.equals(STATIC) || palavra1.equals(VOID) || palavra1.equals(WHILE) || palavra1.equals(INCLUDE)) {
 	
       return true;
   
@@ -93,6 +93,11 @@ public class PalavrasChave {
       resultado = Token.VOID;
     	
     } 
+    
+    else if (palavra1.equals(INCLUDE)){
+
+      resultado = Token.POSPROCESS;
+    }
     else {
         
       resultado = Token.WHILE;

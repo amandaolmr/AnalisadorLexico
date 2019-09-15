@@ -26,13 +26,14 @@ public class AnalisadorLexico {
 	int tipoAtual = Token.EOF;
 	Object valorAtual = null;
 	StringBuffer sBuffer = null;
+	StringBuilder ssBuffer = null;
 	
 	estado = 0;
 	
 	while ( !feito ) {
 		
 	  int caractere = pegardoBuffer();
-	  System.out.println(Character.toChars(caractere));
+	  //System.out.println(Character.toChars(caractere));
 
 	  if ( Character.isWhitespace(caractere) && tipoAtual == Token.EOF ) {
 		
@@ -126,7 +127,7 @@ public class AnalisadorLexico {
 		    	
 		      estado = 32;
 		      
-		    }break;
+			}break;
 
 		    case ',': {
 		    	
@@ -164,8 +165,7 @@ public class AnalisadorLexico {
 			  
 		    }break;
 
-		    case '{': {
-		    	
+		    case '{': {		    	
 		    	
 			  tipoAtual = Token.PONTUACAO;
 			  valorAtual = new Integer( Token.AC );
@@ -180,9 +180,19 @@ public class AnalisadorLexico {
 			  valorAtual = new Integer( Token.FC );
 			
 			  feito = true;
-			
-		    }break;
-			  
+  
+			}break;
+
+			case '#': {
+
+				estado = 50;
+				ssBuffer = new StringBuilder();
+				tipoAtual = Token.POSPROCESS;
+				valorAtual = new Integer( Token.PPS );
+				retoneparaBuffer( caractere );
+
+			}break;
+
 		    default:{
 		    
 		      retoneparaBuffer( caractere );
@@ -378,7 +388,6 @@ public class AnalisadorLexico {
 		    
 			sBuffer = new StringBuffer();
 			sBuffer.append( (char) caractere );
-			System.out.println(sBuffer);
 		  } 
 		  else {
 						
@@ -612,7 +621,8 @@ public class AnalisadorLexico {
 		    valorAtual = sBuffer;
 		    feito = true;
 		    
-		  } 
+		  }
+		 
 		  else {
 			
 			retoneparaBuffer( caractere );
@@ -622,6 +632,73 @@ public class AnalisadorLexico {
 		  
 		}break;
 		
+		case 50:{
+			if (!Simbolos.isLetra(caractere) && !Character.isWhitespace(caractere)) {
+				ssBuffer.append("#");
+			} else if ((!Simbolos.isLetra(caractere)) && Character.isSpaceChar(pegardoBuffer())) {
+				estado = 0;	
+			} else if(!Simbolos.isLetra(caractere) && (Character.isWhitespace(caractere))
+				&& (caractere != -1)){
+					estado = 0;
+			}else{
+				retoneparaBuffer( caractere );
+				estado = 51;
+			}			
+		}break;
+
+		case 51: {
+	    	
+			if ( Simbolos.isLetra( caractere ) || caractere == '_' ) {			
+  
+			  estado = 52;
+			  
+			  tipoAtual = Token.ID;			
+			  
+			  sBuffer = new StringBuffer();
+			  ssBuffer.append( (char) caractere );
+			} 
+			else {
+						  
+			  retoneparaBuffer( caractere );
+			  estado = getProximoEstado();
+			  
+			}
+  
+		  }
+		  break;
+				  
+		  case 52: {
+			  
+			if ( Character.isLetterOrDigit( caractere ) || caractere == '_' ) {
+					  
+			  estado = 52;
+			  
+			  ssBuffer.append( (char) caractere );
+			  
+			} 
+			else {
+						  
+			  retoneparaBuffer( caractere );					
+			  
+			  if ( PalavrasChave.isPalavraChave( new StringBuffer(ssBuffer)) ) {
+								  
+				tipoAtual = PalavrasChave.tipoPalavraChave( new StringBuffer(ssBuffer) );
+				valorAtual = null;
+			  
+			  } 
+			  else {
+							  
+				valorAtual = ssBuffer.toString();
+				
+			  }
+			  
+			  feito = true;
+			  
+			}
+  
+		  }
+		  break;
+
 		default: {
 						
 		  throw new Error("Estado nao esperado!!!");
