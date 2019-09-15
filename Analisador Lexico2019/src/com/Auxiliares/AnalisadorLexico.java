@@ -183,7 +183,8 @@ public class AnalisadorLexico {
 			  feito = true;
   
 			}break;
-
+			
+			//CASO FOR O # (35)
 			case '#': {
 				
 				ssBuffer = new StringBuilder();
@@ -200,31 +201,22 @@ public class AnalisadorLexico {
 					retoneparaBuffer( caractere );
 					
 				}
-
 				else if ( caractere == '#' && !Simbolos.isLetra(bufferTemporario.intValue()) ){
 					
 					estado = 999;
 					estado = getProximoEstado();
-
-					//retoneparaBuffer( caractere );
-					
+				
 				}
-
-				else {
-					
-					estado = 50;
-					
+				else {					
+					estado = 50;					
 					retoneparaBuffer( bufferTemporario.intValue() );	
-
 				}				
 
 			}break;
 
-		    default:{
-		    
+		    default:{		    
 		      retoneparaBuffer( caractere );
-		      estado = getProximoEstado();
-		    
+		      estado = getProximoEstado();		    
 		    }
 		    
 		  }    
@@ -803,7 +795,7 @@ public class AnalisadorLexico {
  
 	  case 41: resultado = 46; break;
 	  
-	  default: throw new LexerException( "Erro Lexico: Impossï¿½vel reconhecer token " );
+	  default: throw new LexerException( "Erro Lexico: Impossível reconhecer token " );
 		
 	}
 	

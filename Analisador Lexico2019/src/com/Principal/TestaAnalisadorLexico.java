@@ -21,7 +21,7 @@ public class TestaAnalisadorLexico {
     	
     	
     	
-      bufferedReader = new BufferedReader( new InputStreamReader( new FileInputStream("/home/argonaut/Programming/VsCode/AnalisadorLexico/Analisador Lexico2019/Programa.lex") ) );
+      bufferedReader = new BufferedReader( new InputStreamReader( new FileInputStream("Programa.lex") ) );
 	    analisadorLexico = new AnalisadorLexico( bufferedReader );
 	    token = analisadorLexico.pegarProximoToken();
 	  
@@ -37,7 +37,7 @@ public class TestaAnalisadorLexico {
 	
     catch (Exception e) {
 		
-      System.err.println( "ExceÃ§Ã£o: " + e.getMessage() );
+      System.err.println( "Exceção: " + e.getMessage() );
     	
     }
 	

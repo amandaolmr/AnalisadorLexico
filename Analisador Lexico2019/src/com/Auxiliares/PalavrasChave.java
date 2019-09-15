@@ -15,7 +15,7 @@ public class PalavrasChave {
   private static final String STATIC = "static";
   private static final String VOID   = "void";
   private static final String WHILE = "while";
-  private static final String INCLUDE = "#include";  
+  private static final String INCLUDE = "#include";  //CRIANDO A PALAVRA CHAVE (#INCLUDE)
   public static boolean isPalavraChave(StringBuffer palavra) {
 
     String palavra1 = palavra.toString();
@@ -94,16 +94,16 @@ public class PalavrasChave {
     	
     } 
     
+    //CASO SEJA INCLUDE
     else if (palavra1.equals(INCLUDE)){
-
-      resultado = Token.POSPROCESS;
-    }
+     
+    	resultado = Token.POSPROCESS;
+    }    
     else {
         
       resultado = Token.WHILE;
     	
     }
-
     return resultado;
 	
   }
